@@ -23,7 +23,7 @@ services:
     container_name: strapi
     restart: unless-stopped
     build:
-      context: ./strapi-backend
+      context: ./store-backend
     env_file: .env
     command: npm run develop
     ports:
