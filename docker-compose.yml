@@ -33,6 +33,23 @@ services:
     networks:
       strapi:
         ipv4_address: 172.20.0.12
+  
+  nextjs:
+    depends_on:
+      - strapi
+    container_name: nextjs
+    environment:
+      - API_LINK=http://strapi:1337
+      - SECRET_REVALIDATE_KEY=secret_revalidate_key
+      - NEXT_PUBLIC_CONTACT_FORM=xyyvzkqg
+    build: ./store-frontend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./nextjs-frontend:/app
+    networks:
+      strapi:
+        ipv4_address: 172.20.0.14
 
 volumes:
   strapi-data:
